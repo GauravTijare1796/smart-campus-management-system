@@ -11,8 +11,8 @@ pipeline {
             steps {
                 sh '''
                     docker run --rm \
-                        -v "$WORKSPACE:/app" \
-                        -w /app \
+                        --volumes-from jenkins-scms \
+                        -w "$WORKSPACE" \
                         python:3.12-slim \
                         sh -c "pip install -r requirements.txt && python -m pytest -v"
                 '''
