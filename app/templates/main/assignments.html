@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Assignments{% endblock %}
+{% block content %}
+<section class="page-heading"><div><div class="eyebrow">COURSEWORK</div><h1>Assignments</h1><p>Keep track of your coursework and due dates.</p></div></section>
+<div class="content-card table-card">
+  {% if records %}
+  <div class="table-responsive"><table class="table align-middle"><thead><tr><th>ASSIGNMENT</th><th>COURSE</th><th>DUE DATE</th><th>STATUS</th></tr></thead><tbody>
+    {% for record in records %}<tr><td><div class="table-primary-text">{{ record["title"] }}</div><div class="table-description">{{ record["description"] }}</div></td><td>{{ record["course"] }}</td><td>{{ record["due_date"] }}</td><td><span class="status-pill {% if record['status'] == 'Submitted' %}status-good{% elif record['status'] == 'In progress' %}status-warn{% else %}status-neutral{% endif %}">{{ record["status"] }}</span></td></tr>{% endfor %}
+  </tbody></table></div>
+  {% else %}<div class="empty-state"><div class="empty-icon">▤</div><h2>No assignments available</h2><p>New coursework will appear here.</p></div>{% endif %}
+</div>
+{% endblock %}

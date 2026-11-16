@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Attendance{% endblock %}
+{% block content %}
+<section class="page-heading"><div><div class="eyebrow">ACADEMIC RECORDS</div><h1>Attendance</h1><p>Your recorded class attendance, most recent first.</p></div></section>
+<div class="content-card table-card">
+  {% if records %}
+  <div class="table-responsive"><table class="table align-middle"><thead><tr><th>COURSE</th><th>DATE</th><th>STATUS</th></tr></thead><tbody>
+    {% for record in records %}<tr><td class="table-primary-text">{{ record["course"] }}</td><td>{{ record["attendance_date"] }}</td><td><span class="status-pill {% if record['status'] == 'Present' %}status-good{% else %}status-bad{% endif %}">{{ record["status"] }}</span></td></tr>{% endfor %}
+  </tbody></table></div>
+  {% else %}<div class="empty-state"><div class="empty-icon">◷</div><h2>No attendance recorded yet</h2><p>Records will appear here when they are available.</p></div>{% endif %}
+</div>
+{% endblock %}

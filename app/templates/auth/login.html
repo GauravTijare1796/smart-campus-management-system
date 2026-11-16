@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block content %}
+<section class="login-layout">
+  <div class="login-story">
+    <div class="eyebrow">YOUR CAMPUS, CONNECTED</div>
+    <h1>Make room for<br><span>what matters.</span></h1>
+    <p>One place to keep up with classes, coursework and your campus profile.</p>
+    <div class="story-note"><span class="story-dot"></span> A calmer way to stay on track</div>
+    <div class="story-decoration" aria-hidden="true">SC</div>
+  </div>
+  <div class="login-card">
+    <div class="eyebrow text-primary">STUDENT PORTAL</div>
+    <h2>Welcome back</h2>
+    <p class="muted-copy mb-4">Sign in with your campus account to continue.</p>
+    <form method="post" novalidate>
+      <div class="mb-3">
+        <label for="identifier" class="form-label">Username, email or student ID</label>
+        <input id="identifier" name="identifier" class="form-control" autocomplete="username" maxlength="254" required autofocus value="{{ request.form.get('identifier', '') }}">
+      </div>
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" name="password" type="password" class="form-control" autocomplete="current-password" maxlength="128" required>
+      </div>
+      <button class="btn btn-primary w-100 btn-signin" type="submit">Sign in <span aria-hidden="true">→</span></button>
+    </form>
+    <div class="login-help"><span class="help-icon">i</span> Demo access is listed in the project README.</div>
+  </div>
+</section>
+{% endblock %}

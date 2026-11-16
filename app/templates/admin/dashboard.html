@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Administration{% endblock %}
+{% block content %}
+<section class="page-heading"><div><div class="eyebrow">CAMPUS OPERATIONS</div><h1>Administration</h1><p>A quick overview of the student portal data.</p></div><span class="admin-label">ADMIN ACCESS</span></section>
+<section class="row g-3 mb-4">
+  <div class="col-md-4"><div class="metric-card"><div class="metric-label">STUDENTS</div><div class="metric-value">{{ student_count }}</div><div class="metric-foot">Active student accounts</div><div class="metric-symbol symbol-blue">♙</div></div></div>
+  <div class="col-md-4"><div class="metric-card"><div class="metric-label">ATTENDANCE ENTRIES</div><div class="metric-value">{{ attendance_count }}</div><div class="metric-foot">Recorded class sessions</div><div class="metric-symbol symbol-green">✓</div></div></div>
+  <div class="col-md-4"><div class="metric-card"><div class="metric-label">ASSIGNMENTS</div><div class="metric-value">{{ assignment_count }}</div><div class="metric-foot">Available coursework items</div><div class="metric-symbol symbol-gold">▤</div></div></div>
+</section>
+<section class="content-card table-card"><div class="card-heading"><div><div class="eyebrow">DIRECTORY</div><h2>Student accounts</h2></div></div>
+  <div class="table-responsive"><table class="table align-middle"><thead><tr><th>STUDENT</th><th>STUDENT ID</th><th>DEPARTMENT</th><th>YEAR</th></tr></thead><tbody>
+    {% for student in students %}<tr><td><div class="table-primary-text">{{ student["name"] }}</div><div class="table-description">{{ student["email"] }}</div></td><td>{{ student["student_number"] }}</td><td>{{ student["department"] }}</td><td>{{ student["year"] }}</td></tr>{% endfor %}
+  </tbody></table></div>
+</section>
+{% endblock %}

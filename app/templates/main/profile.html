@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}My profile{% endblock %}
+{% block content %}
+<section class="page-heading"><div><div class="eyebrow">ACCOUNT</div><h1>My profile</h1><p>Keep your contact details current.</p></div></section>
+<div class="row g-4">
+  <div class="col-lg-4"><div class="content-card identity-card"><div class="avatar">{{ profile_user["name"][:1]|upper }}</div><h2>{{ profile_user["name"] }}</h2><p>{{ profile_user["student_number"] }}</p><div class="identity-separator"></div><div class="identity-meta"><span>Department</span><strong>{{ profile_user["department"] }}</strong></div><div class="identity-meta"><span>Academic year</span><strong>{{ profile_user["year"] or "—" }}</strong></div></div></div>
+  <div class="col-lg-8"><div class="content-card form-card"><h2>Personal details</h2><p class="muted-copy">Your name and contact information are visible to campus staff.</p>
+    <form method="post" novalidate>
+      <div class="mb-3"><label class="form-label" for="name">Full name</label><input class="form-control" id="name" name="name" value="{{ request.form.get('name', profile_user['name']) }}" maxlength="80" required></div>
+      <div class="mb-3"><label class="form-label" for="email">Email address</label><input class="form-control" id="email" name="email" type="email" value="{{ request.form.get('email', profile_user['email']) }}" maxlength="254" required></div>
+      <div class="mb-4"><label class="form-label" for="phone">Phone number <span class="optional">(optional)</span></label><input class="form-control" id="phone" name="phone" type="tel" value="{{ request.form.get('phone', profile_user['phone']) }}" maxlength="20"></div>
+      <button class="btn btn-primary" type="submit">Save changes</button>
+    </form>
+  </div></div>
+</div>
+{% endblock %}
